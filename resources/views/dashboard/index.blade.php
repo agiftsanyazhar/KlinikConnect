@@ -135,7 +135,6 @@
                                 <th style="min-width: 250px;">{{ __('Waktu') }}</th>
                                 <th style="min-width: 100px;">{{ __('Status') }}</th>
                                 <th style="min-width: 300px;">{{ __('Notes') }}</th>
-                                <th style="min-width: 250px;">{{ __('Aksi') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -146,20 +145,6 @@
                                     <td>{{ date('d-m-Y', strtotime($appointment->start_time)) }}, {{ date('H:i', strtotime($appointment->start_time)) }} - {{ date('H:i', strtotime($appointment->end_time)) }}</td>
                                     <td>{{ $appointment->status }}</td>
                                     <td>{{ $appointment->notes ?? '-' }}</td>
-                                    <td>
-                                        @if ($appointment->status == "Pending")
-                                            <form action="{{ route('dashboard.doctor.schedule.update-status', $appointment->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('POST')
-                                                <button type="submit" class="btn btn-success" title="Complete" name="status" value="Completed">
-                                                    <i class="fas fa-check"></i> Complete
-                                                </button>
-                                                <button type="submit" class="btn btn-danger" title="Cancel" name="status" value="Canceled">
-                                                    <i class="fas fa-times"></i> Cancel
-                                                </button>
-                                            </form>
-                                        @endif
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
