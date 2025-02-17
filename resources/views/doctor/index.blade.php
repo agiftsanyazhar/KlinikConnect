@@ -17,12 +17,12 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nama</th>
-                                <th>Spesialis</th>
-                                <th>No. HP</th>
-                                <th>Email</th>
-                                <th>Rating</th>
-                                <th>Aksi</th>
+                                <th style="min-width: 150px;">{{ __('Nama') }}</th>
+                                <th style="min-width: 150px;">{{ __('Spesialis') }}</th>
+                                <th style="min-width: 150px;">{{ __('No. HP') }}</th>
+                                <th style="min-width: 150px;">{{ __('Email') }}</th>
+                                <th style="min-width: 50px;">{{ __('Rating') }}</th>
+                                <th style="min-width: 150px;">{{ __('Aksi') }}</th>
                             </tr>
                         </thead>
                         <tbody>

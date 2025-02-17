@@ -48,9 +48,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Hari</th>
-                                <th>Jam Kerja</th>
-                                <th>Aksi</th>
+                                <th style="min-width: 100px;">Hari</th>
+                                <th style="min-width: 100px;">Jam Kerja</th>
+                                <th style="min-width: 100px;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

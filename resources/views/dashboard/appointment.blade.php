@@ -21,11 +21,11 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>{{ __('Nama') }}</th>
-                                <th>{{ __('Waktu') }}</th>
-                                <th>{{ __('Status') }}</th>
-                                <th>{{ __('Notes') }}</th>
-                                <th>{{ __('Aksi') }}</th>
+                                <th style="min-width: 150px;">{{ __('Nama') }}</th>
+                                <th style="min-width: 250px;">{{ __('Waktu') }}</th>
+                                <th style="min-width: 100px;">{{ __('Status') }}</th>
+                                <th style="min-width: 300px;">{{ __('Notes') }}</th>
+                                <th style="min-width: 250px;">{{ __('Aksi') }}</th>
                             </tr>
                         </thead>
                         <tbody>
