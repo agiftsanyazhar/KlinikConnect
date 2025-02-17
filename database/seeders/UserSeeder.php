@@ -67,7 +67,7 @@ class UserSeeder extends Seeder
 
             DoctorTestimonial::create([
                 'doctor_id' => $user->id,
-                'rating' => rand(0, 50) / 10,
+                'rating' => rand(1, 5),
             ]);
         }
 

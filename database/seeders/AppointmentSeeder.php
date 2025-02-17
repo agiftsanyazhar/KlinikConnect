@@ -21,7 +21,7 @@ class AppointmentSeeder extends Seeder
                 'doctor_id' => rand(1, 10),
                 'patient_id' => rand(1, 100),
                 'appointment_date' => now()->addDays(rand(0, 30)),
-                'status' => ['completed', 'pending', 'cancelled'][rand(0, 2)],
+                'status' => ['Completed', 'Pending', 'Cancelled'][rand(0, 2)],
             ]);
 
             Notification::create([
@@ -37,7 +37,7 @@ class AppointmentSeeder extends Seeder
             PaymentRecord::create([
                 'appointment_id' => $appointment->id,
                 'amount' => rand(100000, 5000000),
-                'status' => ['completed', 'pending', 'failed'][rand(0, 2)],
+                'status' => ['Completed', 'Pending', 'Failed'][rand(0, 2)],
             ]);
         }
     }

@@ -54,6 +54,16 @@ class Doctor extends Model
     }
 
     /**
+     * Calculate the average rating for the doctor
+     *
+     * @return float
+     */
+    public function averageRating()
+    {
+        return $this->doctorTestimonial()->avg('rating');
+    }
+
+    /**
      * Get all of the appointment for the Doctor
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

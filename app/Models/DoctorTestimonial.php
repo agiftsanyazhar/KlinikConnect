@@ -18,8 +18,8 @@ class DoctorTestimonial extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function doctorTestimonial(): BelongsTo
+    public function doctor(): BelongsTo
     {
-        return $this->belongsTo(DoctorTestimonial::class);
+        return $this->belongsTo(doctor::class);
     }
 }

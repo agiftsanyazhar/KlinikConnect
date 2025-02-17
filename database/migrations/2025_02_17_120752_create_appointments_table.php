@@ -22,7 +22,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->datetime('appointment_date');
-            $table->enum('status', ['completed', 'pending', 'cancelled']);
+            $table->enum('status', ['Completed', 'Pending', 'Cancelled'])->default('Pending');
             $table->text('notes')->nullable();
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->integer('amount');
-            $table->enum('status', ['completed', 'pending', 'failed']);
+            $table->enum('status', ['Completed', 'Pending', 'Failed'])->default('Pending');
             $table->timestamps();
         });
     }

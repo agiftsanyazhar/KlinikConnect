@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->float('rating');
+            $table->integer('rating');
             $table->timestamps();
         });
     }
