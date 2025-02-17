@@ -14,15 +14,11 @@ Route::prefix('daftar-dokter')->name('doctor.')->group(function () {
 
     Route::prefix('jadwal')->name('schedule.')->group(function () {
         Route::get('/{id}', [DoctorScheduleController::class, 'index'])->name('index');
-        Route::post('/', [DoctorScheduleController::class, 'store'])->name('store');
-        Route::post('/update-status/{id}', [DoctorScheduleController::class, 'updateStatus'])->name('update-status');
+        Route::post('/', [AppointmentController::class, 'store'])->name('store');
+        Route::post('/update-status/{id}', [AppointmentController::class, 'updateStatus'])->name('update-status');
     });
 });
 
 Route::prefix('janji-temu-saya')->name('appointment.')->group(function () {
     Route::get('/', [AppointmentController::class, 'index'])->name('index');
-    // Route::get('/upcoming', [AppointmentController::class, 'upcoming'])->name('upcoming');
-    // Route::post('/store', [AppointmentController::class, 'store'])->name('store');
-    // Route::post('/update', [AppointmentController::class, 'update'])->name('update');
-    // Route::get('/destroy/{id}', [AppointmentController::class, 'destroy'])->name('destroy');
 });

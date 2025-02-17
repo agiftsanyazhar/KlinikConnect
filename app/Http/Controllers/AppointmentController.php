@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
-use App\Http\Requests\StoreAppointmentRequest;
-use App\Http\Requests\UpdateAppointmentRequest;
+use Exception;
+use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
@@ -13,54 +13,68 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $appointments = Appointment::where('patient_id', auth()->user()->id)
+            ->orderBy('start_time', 'asc')
+            ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $data = [
+            'title' => 'Janji Temu Saya',
+            'appointments' => $appointments,
+        ];
+
+        return view('dashboard.appointment', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAppointmentRequest $request)
+    public function store(Request $request)
     {
-        //
+        try {
+            $data = $request->validate([
+                'doctor_id' => 'required|integer|exists:doctors,id',
+                'patient_id' => 'required|integer|exists:patients,id',
+                'start_time' => 'required',
+                'end_time' => 'required',
+                'notes' => 'nullable|string',
+            ]);
+
+            if ($data['start_time'] >= $data['end_time']) {
+                return redirect()->back()->with('error', 'Waktu selesai harus lebih besar dari waktu mulai.');
+            }
+
+            Appointment::create($data);
+
+            $status = 'success';
+            $message = 'Jadwal dokter berhasil ditambahkan.';
+        } catch (Exception $e) {
+            $status = 'error';
+            $message = 'Jadwal dokter gagal ditambahkan. ' . $e->getMessage();
+        }
+
+        return redirect()->back()->with($status, $message);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Appointment $appointment)
+    public function updateStatus(Request $request, $id)
     {
-        //
-    }
+        try {
+            $appointment = Appointment::where('id', $id)->firstOrFail();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Appointment $appointment)
-    {
-        //
-    }
+            $newStatus = $request->input('status');
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAppointmentRequest $request, Appointment $appointment)
-    {
-        //
-    }
+            if (!in_array($newStatus, ['Completed', 'Pending', 'Canceled'])) {
+                return redirect()->back()->with('error', 'Invalid status.');
+            }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Appointment $appointment)
-    {
-        //
+            $appointment->update(['status' => $newStatus]);
+
+            $status = 'success';
+            $message = 'Status jadwal dokter berhasil diubah.';
+        } catch (Exception $e) {
+            $status = 'error';
+            $message = 'Status jadwal dokter gagal diubah. ' . $e->getMessage();
+        }
+
+        return redirect()->back()->with($status, $message);
     }
 }
