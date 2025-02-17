@@ -21,7 +21,7 @@ class DashboardController extends Controller
             })
             ->take(10);
         $appointments = Appointment::where('patient_id', auth()->user()->id)
-            ->orderByDesc('appointment_date')
+            ->orderBy('start_time', 'asc')
             ->limit(10)
             ->get();
 

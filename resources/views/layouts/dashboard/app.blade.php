@@ -99,21 +99,6 @@
                 confirmButtonText: 'Tutup',
             });
         }
-
-        function deleteDialog(url) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Konfirmasi?',
-                text: `Apakah Anda yakin ingin menghapus ini?`,
-                showCancelButton: true,
-                confirmButtonText: 'Hapus',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.value !== undefined && result.value) {
-                    window.location.href = url;
-                }
-            })
-        }
     </script>
 </body>
 

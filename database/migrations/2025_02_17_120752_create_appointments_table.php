@@ -21,7 +21,8 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->datetime('appointment_date');
+            $table->datetime('start_time');
+            $table->datetime('end_time');
             $table->enum('status', ['Completed', 'Pending', 'Cancelled'])->default('Pending');
             $table->text('notes')->nullable();
             $table->timestamps();

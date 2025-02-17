@@ -11,21 +11,16 @@
     
     <section id="content-types">
         <div class="card shadow">
-            <div class="card-header">
-                <h5 class="card-title">
-                    {{ $title }}
-                </h5>
-            </div>
             <div class="card-content">
                 <div class="card-body">
                     <div class="row">
-                        @foreach ($announcements as $anouncement)    
+                        @foreach ($announcements as $announcement)    
                             <div class="col-xl-4 col-md-6 col-sm-12">
                                 <div class="card shadow">
                                     <div class="card-content">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $anouncement->title }}</h5>
-                                            <p class="card-text">{{ $anouncement->description }}</p>
+                                            <h5 class="card-title">{{ $announcement->title }}</h5>
+                                            <p class="card-text">{{ $announcement->description }}</p>
                                         </div>
                                     </div>
                                 </div>

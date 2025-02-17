@@ -20,7 +20,8 @@ class AppointmentSeeder extends Seeder
             $appointment = Appointment::create([
                 'doctor_id' => rand(1, 10),
                 'patient_id' => rand(1, 100),
-                'appointment_date' => now()->addDays(rand(0, 30)),
+                'start_time' => now()->addDays(rand(0, 30)),
+                'end_time' => now()->addDays(rand(0, 30)),
                 'status' => ['Completed', 'Pending', 'Cancelled'][rand(0, 2)],
             ]);
 

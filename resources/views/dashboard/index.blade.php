@@ -9,23 +9,22 @@
         </div>
     </div>
     
+    <!-- Pengumuman Section -->
     <section id="content-types">
         <div class="card shadow">
             <div class="card-header">
-                <h5 class="card-title">
-                    Pengumuman
-                </h5>
+                <h5 class="card-title">{{ __('Pengumuman') }}</h5>
             </div>
             <div class="card-content">
                 <div class="card-body">
                     <div class="row">
-                        @foreach ($announcements as $anouncement)    
+                        @foreach ($announcements as $announcement)    
                             <div class="col-xl-4 col-md-6 col-sm-12">
                                 <div class="card shadow">
                                     <div class="card-content">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $anouncement->title }}</h5>
-                                            <p class="card-text">{{ $anouncement->description }}</p>
+                                            <h5 class="card-title">{{ $announcement->title }}</h5>
+                                            <p class="card-text">{{ $announcement->description }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -34,18 +33,17 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="{{ route('dashboard.announcement') }}" class="btn btn-primary">Lihat Semua</a>
+                    <a href="{{ route('dashboard.announcement') }}" class="btn btn-primary">{{ __('Lihat Semua') }}</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Panduan Section -->
     <section class="section">
         <div class="card shadow">
             <div class="card-header">
-                <h5 class="card-title">
-                    Panduan
-                </h5>
+                <h5 class="card-title">{{ __('Panduan') }}</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -53,9 +51,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Judul</th>
-                                <th>Deskripsi</th>
-                                <th>Berkas</th>
+                                <th>{{ __('Judul') }}</th>
+                                <th>{{ __('Deskripsi') }}</th>
+                                <th>{{ __('Berkas') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,8 +63,8 @@
                                     <td>{{ $guide->title }}</td>
                                     <td>{{ $guide->description }}</td>
                                     <td>
-                                        <a class="btn btn-primary" href="javascript:void(0);" target="_blank" rel="noopener noreferrer">
-                                            <i class="fas fa-download"></i> Unduh
+                                        <a class="btn btn-primary" href="{{ asset('storage/' . $guide->file) }}" target="_blank" rel="noopener noreferrer">
+                                            <i class="fas fa-download"></i> {{ __('Unduh') }}
                                         </a>
                                     </td>
                                 </tr>
@@ -78,25 +76,24 @@
         </div>
     </section>
 
+    <!-- Dokter Terbaik Section -->
     <section class="section">
         <div class="card shadow">
             <div class="card-header">
-                <h5 class="card-title">
-                    10 Dokter Terbaik
-                </h5>
+                <h5 class="card-title">{{ __('10 Dokter Terbaik') }}</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table" id="table3">
+                    <table class="table" id="table2">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Dokter</th>
-                                <th>Spesialis</th>
-                                <th>No. HP</th>
-                                <th>Email</th>
-                                <th>Rating</th>
-                                <th>Aksi</th>
+                                <th>{{ __('Nama') }}</th>
+                                <th>{{ __('Spesialis') }}</th>
+                                <th>{{ __('No. HP') }}</th>
+                                <th>{{ __('Email') }}</th>
+                                <th>{{ __('Rating') }}</th>
+                                <th>{{ __('Aksi') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,8 +106,8 @@
                                     <td>{{ $doctor->email }}</td>
                                     <td>{{ number_format($doctor->averageRating(), 1) }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-success">
-                                            <i class="fas fa-book"></i> Buat Janji
+                                        <a href="{{ route('dashboard.doctor.schedule.index', $doctor->id) }}" class="btn btn-primary">
+                                            <i class="fas fa-calendar-day"></i> {{ __('Lihat Jadwal') }}
                                         </a>
                                     </td>
                                 </tr>
@@ -122,12 +119,11 @@
         </div>
     </section>
 
+    <!-- Janji Temu Saya Section -->
     <section class="section">
         <div class="card shadow">
             <div class="card-header">
-                <h5 class="card-title">
-                    Janji Temu Saya
-                </h5>
+                <h5 class="card-title">{{ __('Janji Temu Saya') }}</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -135,10 +131,10 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Dokter</th>
-                                <th>Tanggal</th>
-                                <th>Status</th>
-                                <th>Notes</th>
+                                <th>{{ __('Nama') }}</th>
+                                <th>{{ __('Waktu') }}</th>
+                                <th>{{ __('Status') }}</th>
+                                <th>{{ __('Notes') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -146,7 +142,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $appointment->doctor->name }}</td>
-                                    <td>{{ $appointment->appointment_date }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($appointment->start_time)) }}, {{ date('H:i', strtotime($appointment->start_time)) }} - {{ date('H:i', strtotime($appointment->end_time)) }}</td>
                                     <td>{{ $appointment->status }}</td>
                                     <td>{{ $appointment->notes ?? '-' }}</td>
                                 </tr>
@@ -156,7 +152,7 @@
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-between">
-                <a href="{{ route('dashboard.appointment.index') }}" class="btn btn-primary">Lihat Semua</a>
+                <a href="{{ route('dashboard.appointment.index') }}" class="btn btn-primary">{{ __('Lihat Semua') }}</a>
             </div>
         </div>
     </section>

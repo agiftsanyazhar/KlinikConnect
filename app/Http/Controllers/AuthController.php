@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\{LoginRequest, RegisterRequest};
+use App\Http\Requests\Auth\{LoginRequest, RegisterRequest};
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
