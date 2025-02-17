@@ -22,7 +22,7 @@ class AppointmentSeeder extends Seeder
                 'patient_id' => rand(1, 100),
                 'start_time' => now()->addDays(rand(0, 30)),
                 'end_time' => now()->addDays(rand(0, 30)),
-                'status' => ['Completed', 'Pending', 'Cancelled'][rand(0, 2)],
+                'status' => ['Completed', 'Pending', 'Canceled'][rand(0, 2)],
             ]);
 
             Notification::create([

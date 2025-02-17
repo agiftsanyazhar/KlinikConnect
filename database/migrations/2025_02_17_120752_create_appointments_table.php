@@ -23,7 +23,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->datetime('start_time');
             $table->datetime('end_time');
-            $table->enum('status', ['Completed', 'Pending', 'Cancelled'])->default('Pending');
+            $table->enum('status', ['Completed', 'Pending', 'Canceled'])->default('Pending');
             $table->text('notes')->nullable();
             $table->timestamps();
         });

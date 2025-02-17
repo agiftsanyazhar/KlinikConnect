@@ -15,6 +15,7 @@ Route::prefix('daftar-dokter')->name('doctor.')->group(function () {
     Route::prefix('jadwal')->name('schedule.')->group(function () {
         Route::get('/{id}', [DoctorScheduleController::class, 'index'])->name('index');
         Route::post('/', [DoctorScheduleController::class, 'store'])->name('store');
+        Route::post('/update-status/{id}', [DoctorScheduleController::class, 'updateStatus'])->name('update-status');
     });
 });
 

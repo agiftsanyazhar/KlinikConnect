@@ -58,11 +58,26 @@ class DoctorScheduleController extends Controller
         return redirect()->back()->with($status, $message);
     }
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  */
-    // public function update(UpdateDoctorScheduleRequest $request, DoctorSchedule $doctorSchedule)
-    // {
-    //     //
-    // }
+    public function updateStatus(Request $request, $id)
+    {
+        try {
+            $appointment = Appointment::where('id', $id)->firstOrFail();
+
+            $newStatus = $request->input('status');
+
+            if (!in_array($newStatus, ['Completed', 'Pending', 'Canceled'])) {
+                return redirect()->back()->with('error', 'Invalid status.');
+            }
+
+            $appointment->update(['status' => $newStatus]);
+
+            $status = 'success';
+            $message = 'Status jadwal dokter berhasil diubah.';
+        } catch (Exception $e) {
+            $status = 'error';
+            $message = 'Status jadwal dokter gagal diubah. ' . $e->getMessage();
+        }
+
+        return redirect()->back()->with($status, $message);
+    }
 }
